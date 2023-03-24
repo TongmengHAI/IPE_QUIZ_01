@@ -1,0 +1,104 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test page</title>
+</head>
+<body>
+    <header><b>Typing Test</b></header>
+    <header>You have 1 minute to complete the test</header>
+    <form>
+        <p id="timer"></p>
+        <p1 id="sentence"></p1>
+        <br/><br/>
+        <input type="text" id="inputtext">
+    </form>
+    <button id="btn" onclick="start()">Start Test</button>
+    <p2 id="result"></p2>  
+    <button  onclick="resultpage()">Result Page</button>
+    <script>
+        const words = ["riot","hard","horn","fox","cool","rice","true","false","tape","swim","fall","dawn","down","salt",
+                    "chicken","snow","grain","oven","equal","mold","prize","weak","grave","drown","zombie","ghost",
+                    "right","tight","might","could","maybe","because","diet","hope","padding","margin","coding","program",
+                    "grasp","trait","quota","zebra","animal","teacher","fund","pump","south","north","seashore","hippo",
+                    "curl","user","plain","biome","minecraft","interval","bowling","attack","online","gamer","telegram",
+                    "message","jupiter","sand","granite","rain","random","green","blue","red","version","shark","baby",
+                    "grand","fight","illegal","legacy","lier","break","danger","yoyo","pixel","french","english","engineer",
+                    "language","visual","studio","code","linear","algebra","computer","laptop","phone","number","browser",
+                    "battery","window","linux","keyboard","mouse","cry","assignment","deadline","team","microsoft","dog",
+                    "crystal","delta","beta","gamma","color","food","plugin","website","app","bottle","music","genre","bee",
+                    "hair","lose","complete","typing","test","java","javascript","typescript","minute","hour","second","stare",
+                    "body","header","footer","style","script","button","paragraph","html","python","snake","element","input",
+                    "output","width","height","align","layout","change","compute","math","circle","square","fish","center"
+                ];
+        //timer when start the test
+        function resultpage(){
+            window.open("","_self");
+        }
+        function test_result(){
+            const input = document.getElementById('inputtext').value;
+            var wordcount= input.split(' ').length; 
+            document.getElementById("timer").style.color = "green";
+            document.getElementById("timer").innerHTML = "Thank you for testing! Your speed is "+wordcount +" WPM";
+            document.getElementById("inputtext").reset();
+        }
+        function start(){
+            const START = 60;
+            var timeleft = START;
+            var wordcount = 0;
+            var sentence=" ";
+            while(wordcount<150){
+                let c= Math.floor(Math.random() * words.length);
+                sentence = sentence+"  "+words[c];
+                wordcount++;
+            }
+            document.getElementById("sentence").innerHTML = sentence;
+            var x = setInterval(function(){
+                if(timeleft >0){
+                    if(timeleft<15)//change timer color to red when it below 15 second
+                        document.getElementById("timer").style.color = "red";
+                    document.getElementById("timer").innerHTML = timeleft+"s";   
+                }
+                else{
+                    clearInterval(x);
+                    test_result();
+                }
+                timeleft--;
+        },1000);
+        }
+        
+        
+    </script>
+</body>
+</html>
+
+<style>
+    form{
+        padding-left: 100px;
+        padding-right: 100px;
+        margin-top:30px;
+    }
+    form input{
+        width: 80vw;
+        height: 5vh;
+    }
+    form p{
+        font-size: 1.8rem;
+    }
+    form p1{
+        font-size: 1.2rem;
+    }
+    body{
+        text-align: center;
+    }
+    header{
+        font-size: 2rem;
+    }
+    html{
+        overflow: hidden;
+        margin:0;
+        padding:0;
+    }
+</style>
